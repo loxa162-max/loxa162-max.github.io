@@ -306,6 +306,14 @@ footer{text-align:center;color:var(--sub);font-size:.85rem;padding:40px 0 60px;b
 <div class="mobile-actions" aria-label="快速購物入口"><a href="https://myship.7-11.com.tw/general/detail/GM2401270490131" target="_blank" rel="noopener noreferrer">賣貨便選購 ↗</a><a href="https://line.me/R/ti/p/@541nqkeb" target="_blank" rel="noopener noreferrer">LINE 問阿諾</a></div>
 <a class="back-to-top" href="#top" aria-label="回到頁面頂端" hidden><span aria-hidden="true">↑</span> TOP</a>
 <script src="assets/shop.js?v=streamline-1" defer></script>
+<style>.ano-hide{display:none!important}.ano-more{display:block;margin:18px auto 4px;padding:10px 28px;border-radius:999px;border:1px solid #54808c;background:rgba(255,255,255,.8);color:#54808c;font-size:15px;cursor:pointer}.ano-price{display:block;margin-top:4px;font-size:.85rem;color:#54808c;letter-spacing:.03em}</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('details.topic-fold').forEach(function(d){d.open=true;});
+ document.querySelectorAll('details.topic-fold .grid').forEach(function(g){ if(g.closest('details.more-products')) return; var items=[].slice.call(g.children); if(items.length<=4) return; items.slice(4).forEach(function(i){i.classList.add('ano-hide');}); var b=document.createElement('button'); b.type='button'; b.className='ano-more'; b.textContent='看更多（還有 '+(items.length-4)+' 款）'; b.onclick=function(){items.forEach(function(i){i.classList.remove('ano-hide');}); b.remove();}; g.parentNode.insertBefore(b,g.nextSibling); });
+ document.querySelectorAll('.product-card').forEach(function(c){ if(/NT\$|元/.test(c.textContent)) return; var t=c.querySelector('figcaption')||c; var s=document.createElement('span'); s.className='ano-price'; s.textContent='NT$150 起・百元精品'; t.appendChild(s); });
+});
+</script>
 </body>
 </html>
 
