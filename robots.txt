@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://loxa162-max.github.io/sitemap.xml
