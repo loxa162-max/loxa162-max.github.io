@@ -109,3 +109,7 @@ section{scroll-margin-top:24px}
  .dialog-copy .btn{font-size:.88rem;padding:10px 16px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.start-card{transition:none}}
+
+.activity-jump{text-align:center;margin:10px 0 24px}.activity-jump a{display:inline-block;padding:10px 20px;border:1px solid var(--line);border-radius:999px;text-decoration:none;background:var(--card)}.activity-grid img,.event-grid img{aspect-ratio:4/5;object-fit:contain;background:#edf2f4}.event-video{display:block;width:min(100%,600px);max-height:70dvh;margin:24px auto;border-radius:20px;background:#e2ecf2}.activity-grid .product-style{font-size:1rem;color:var(--ink)}
+
+.activity-grid{grid-template-columns:repeat(3,minmax(0,1fr))}@media(max-width:600px){.activity-grid{grid-template-columns:1fr}.activity-grid img{max-height:none}}
