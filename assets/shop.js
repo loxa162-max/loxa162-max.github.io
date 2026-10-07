@@ -21,6 +21,7 @@
     }
     picker.querySelectorAll('[data-color-filter]').forEach(button => button.addEventListener('click', () => {
       selected = button.dataset.colorFilter;
+      expanded = false;
       picker.querySelectorAll('[data-color-filter]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
       render();
     }));
@@ -72,7 +73,12 @@
       document.querySelector('#product-dialog-style').textContent = link.dataset.style;
       document.querySelector('#product-dialog-description').textContent = link.dataset.description;
       document.querySelector('#product-dialog-shop').href = link.href;
-      document.querySelector('#product-dialog-shop').textContent = '到賣貨便選購';
+      const inquiry = link.dataset.inquiry === 'true';
+      document.querySelector('#product-dialog-shop').textContent = inquiry ? '瀏覽賣場其他款' : '到賣貨便選購這款';
+      document.querySelector('#product-dialog-price').textContent = link.dataset.price || '';
+      document.querySelector('#product-dialog-specs').textContent = link.dataset.specs || '';
+      document.querySelector('#product-dialog-price-note').textContent = link.dataset.priceNote || '';
+      document.querySelector('#product-dialog-inquiry').textContent = inquiry ? '先問這款現貨與尺寸' : 'LINE 問阿諾這款';
       dialog.showModal();
       document.body.classList.add('dialog-open');
       dialog.querySelector('.dialog-close').focus();
@@ -97,3 +103,4 @@ document.querySelectorAll('[data-browse-color]').forEach(link => link.addEventLi
  gallery.querySelector('.topic-fold').open=true;
  gallery.querySelector('[data-color-filter="'+link.dataset.browseColor+'"]').click();
 }));
+

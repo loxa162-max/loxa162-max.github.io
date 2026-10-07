@@ -168,3 +168,7 @@ html{background:#f8fafb;background-color:#f8fafb}
 @media(prefers-reduced-motion:reduce){.category-photo img{transition:none}}
 
 .gallery-more{text-align:center;margin:24px 0}.gallery-more button{cursor:pointer;font:inherit;font-size:.85rem;background:#fff}.gallery-more button[hidden]{display:none}.gallery-items{align-items:start}
+
+
+/* Accurate per-product information and clear inquiry routes. */
+.product-price{font-family:"Noto Sans TC",sans-serif;font-size:1rem;font-weight:600;color:var(--ink);margin-top:10px}.product-specs{font-family:"Noto Sans TC",sans-serif;font-size:.78rem;color:var(--sub);line-height:1.7;margin-top:5px}.shop-browse{display:block;text-align:center;font-size:.75rem;margin:0 12px 14px;color:var(--sub)}.shopping-help{margin:0 0 28px}.shopping-help p{font-size:.88rem;line-height:1.9}.shopping-help p+p{margin-top:8px}.gallery-more button:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
