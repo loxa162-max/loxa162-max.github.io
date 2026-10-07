@@ -33,7 +33,7 @@
       document.querySelector('#product-dialog-style').textContent = link.dataset.style;
       document.querySelector('#product-dialog-description').textContent = link.dataset.description;
       document.querySelector('#product-dialog-shop').href = link.href;
-      document.querySelector('#product-dialog-shop').textContent = link.href.includes('instagram.com') ? '到 Instagram 問這款' : '到賣貨便看款式';
+      document.querySelector('#product-dialog-shop').textContent = '到賣貨便選購';
       dialog.showModal();
       document.body.classList.add('dialog-open');
       dialog.querySelector('.dialog-close').focus();
