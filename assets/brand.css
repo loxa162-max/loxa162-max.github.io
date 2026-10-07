@@ -131,3 +131,4 @@ section[data-topic]{padding:28px 0}details.topic-fold{border:0;background:transp
 
 /* One unified heading for the physical market channel. */
 .offline-zone>#market{border-top:0;padding-top:8px}.offline-zone>#market>.eyebrow{color:#517365;margin-bottom:12px}
+.back-to-top{position:fixed;right:24px;bottom:24px;z-index:21;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:10px 15px;border:1px solid #9db8c8;border-radius:999px;background:#e6eff5;color:#365d74;box-shadow:0 4px 14px rgba(44,64,78,.12);font-family:"Noto Sans TC",sans-serif;font-size:.78rem;font-weight:500;text-decoration:none}.back-to-top[hidden]{display:none}.back-to-top:hover{background:#d4e3eb}.back-to-top:focus-visible{outline:2px solid #54808c;outline-offset:3px}.dialog-open .back-to-top{display:none}@media(max-width:600px){.back-to-top{right:14px;bottom:calc(88px + env(safe-area-inset-bottom));padding:9px 13px}}

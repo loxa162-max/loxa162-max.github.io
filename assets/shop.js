@@ -1,4 +1,10 @@
 (() => {
+  const topLink = document.querySelector('.back-to-top');
+  if (topLink) {
+    const updateTopLink = () => { topLink.hidden = window.scrollY < 300; };
+    window.addEventListener('scroll', updateTopLink, { passive: true });
+    updateTopLink();
+  }
   function revealHash() {
     let id;
     try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
