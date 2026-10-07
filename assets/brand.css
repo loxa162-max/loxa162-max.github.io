@@ -1,0 +1,13 @@
+/* 阿諾ʚ ɞ水晶：霧藍、白花、細線水晶、圓形徽章、深藍手寫感。 */
+:root{--ink:#284864;--sub:#4f6a7c;--acc:#385e7d;--line:#bed0de;--card:rgba(255,255,255,.78);--top:#e2edf4;--bot:#eff4f8}
+a{ text-underline-offset:.2em; }
+a:hover{ text-decoration:underline; }
+a:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:3px}
+.platform-keyword{color:var(--acc);text-decoration:underline;text-decoration-thickness:1px}
+.brand-divider{margin:20px 0 0;overflow:hidden;border-radius:20px;border:1px solid var(--line);background:#85acc5}
+.brand-divider img{display:block;width:100%;height:auto}
+.brand-divider + #about{border-top:0}
+.blindbox-brand{padding:12px 18px;margin-bottom:24px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);text-align:center}
+nav .logo{white-space:nowrap}
+nav .logo img{border-radius:50%}
+@media(max-width:480px){.brand-divider{border-radius:14px}.brand-divider img{width:160%;max-width:none;margin-left:-30%}}

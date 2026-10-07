@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="400" viewBox="0 0 1440 400" role="img" aria-labelledby="title desc">
+  <title id="title">阿諾ʚ ɞ水晶｜天然水晶礦物</title>
+  <desc id="desc">霧藍底色，白花、細線水晶與圓形徽章，搭配深藍手寫感品牌字樣。</desc>
+  <defs>
+    <g id="flower">
+      <g fill="#fbfcf9" stroke="#e3ebe9" stroke-width=".6">
+        <ellipse cy="-15" rx="10" ry="17"/>
+        <ellipse cy="-15" rx="10" ry="17" transform="rotate(72)"/>
+        <ellipse cy="-15" rx="10" ry="17" transform="rotate(144)"/>
+        <ellipse cy="-15" rx="10" ry="17" transform="rotate(216)"/>
+        <ellipse cy="-15" rx="10" ry="17" transform="rotate(288)"/>
+      </g>
+      <circle r="6" fill="#a3b8a6"/><circle r="2.5" fill="#688471"/>
+    </g>
+    <g id="sprig" fill="#96b298" stroke="#718d7e" stroke-width="1">
+      <path d="M0 0Q30-46 80-70" fill="none"/>
+      <ellipse cx="18" cy="-19" rx="8" ry="22" transform="rotate(-45 18 -19)"/>
+      <ellipse cx="38" cy="-41" rx="8" ry="22" transform="rotate(38 38 -41)"/>
+      <ellipse cx="61" cy="-57" rx="8" ry="19" transform="rotate(-45 61 -57)"/>
+    </g>
+  </defs>
+  <rect width="1440" height="400" fill="#85acc5"/>
+  <g opacity=".8"><use href="#sprig" transform="translate(85 397) scale(2.1)"/><use href="#sprig" transform="translate(1370 8) rotate(180) scale(2)"/></g>
+  <g><use href="#flower" transform="translate(15 305) scale(1.7)"/><use href="#flower" transform="translate(92 353) scale(1.4)"/><use href="#flower" transform="translate(163 390) scale(1.7)"/><use href="#flower" transform="translate(28 392) scale(1.5)"/><use href="#flower" transform="translate(1330 26) scale(1.8)"/><use href="#flower" transform="translate(1407 73) scale(1.5)"/><use href="#flower" transform="translate(1240 0) scale(1.2)"/></g>
+  <g fill="none" stroke="#385e7d" stroke-width="1.2" opacity=".9"><circle cx="720" cy="200" r="170"/><ellipse cx="720" cy="200" rx="176" ry="165" transform="rotate(-15 720 200)"/></g>
+  <g fill="#385e7d"><circle cx="633" cy="53" r="8"/><circle cx="876" cy="269" r="11"/><circle cx="761" cy="36" r="3"/><circle cx="553" cy="177" r="2"/></g>
+  <g fill="none" stroke="#f5fafc" stroke-width="1.6" stroke-linejoin="round">
+    <path d="M560 276L579 226L611 251L627 308L602 340L576 322Z M579 226L587 279L602 340 M560 276L587 279L611 251 M587 279L627 308"/>
+    <path d="M614 293L630 267L649 287L659 324L640 343L623 327Z M630 267L637 305L640 343 M614 293L637 305L649 287 M637 305L659 324"/>
+    <path d="M612 70h10m-5-5v10M844 82h10m-5-5v10M857 327h10m-5-5v10"/>
+  </g>
+  <use href="#sprig" transform="translate(604 337) scale(.75)"/>
+  <use href="#flower" transform="translate(610 335) scale(1.05)"/><use href="#flower" transform="translate(642 350) scale(.7)"/><use href="#flower" transform="translate(866 110) scale(.65)"/><use href="#flower" transform="translate(760 364) scale(.45)"/>
+  <g fill="#284864" text-anchor="middle" font-family="'LXGW WenKai TC','DFKai-SB','KaiTi',serif">
+    <text x="725" y="198" font-size="38" font-weight="700">阿諾ʚ ɞ水晶</text>
+    <text x="725" y="243" font-size="25" letter-spacing="3">天然水晶礦物</text>
+    <text x="725" y="272" font-size="11" letter-spacing="4">ANO CRYSTAL · FOR YOU</text>
+  </g>
+</svg>
