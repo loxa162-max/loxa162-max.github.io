@@ -1,4 +1,28 @@
 (() => {
+  const gallery = document.querySelector('#gallery');
+  const picker = gallery?.querySelector('.color-picker');
+  if (picker) {
+    picker.hidden = false;
+    const cards = [...gallery.querySelectorAll('.product-card')];
+    const groups = [...gallery.querySelectorAll('.more-products')];
+    let savedOpen;
+    picker.querySelectorAll('[data-color-filter]').forEach(button => button.addEventListener('click', () => {
+      const color = button.dataset.colorFilter;
+      if (color !== 'all' && !savedOpen) savedOpen = groups.map(group => group.open);
+      picker.querySelectorAll('[data-color-filter]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      cards.forEach(card => { card.hidden = color !== 'all' && !card.dataset.colors.split(' ').includes(color); });
+      groups.forEach((group, i) => {
+        group.hidden = ![...group.querySelectorAll('.product-card')].some(card => !card.hidden);
+        if (color !== 'all') group.open = !group.hidden;
+        else if (savedOpen) group.open = savedOpen[i];
+      });
+      if (color === 'all') savedOpen = undefined;
+      gallery.querySelectorAll('.grid').forEach(grid => { grid.hidden = ![...grid.querySelectorAll('.product-card')].some(card => !card.hidden); });
+      const count = cards.filter(card => !card.hidden).length;
+      picker.querySelector('.color-result').textContent = color === 'all' ? '共 ' + count + ' 款選物，點照片看細節。' : button.textContent.trim() + ' · ' + count + ' 款選物；現貨與規格以賣場為準。';
+    }));
+    picker.querySelector('.color-result').textContent = '共 ' + cards.length + ' 款選物，點照片看細節。';
+  }
   const topLink = document.querySelector('.back-to-top');
   if (topLink) {
     const updateTopLink = () => { topLink.hidden = window.scrollY < 300; };
