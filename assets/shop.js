@@ -1,4 +1,22 @@
 (() => {
+  function revealHash() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    const topic = target.matches('section[data-topic]') ? target.querySelector('.topic-fold') : target.closest('.topic-fold');
+    if (topic) topic.open = true;
+    for (let node = target; node; node = node.parentElement) {
+      if (node.tagName === 'DETAILS') node.open = true;
+    }
+    requestAnimationFrame(() => target.scrollIntoView({ block: 'start', behavior: 'instant' }));
+  }
+  window.addEventListener('hashchange', revealHash);
+  document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', () => {
+    if (link.hash === location.hash) revealHash();
+  }));
+  revealHash();
   const dialog = document.querySelector('#product-dialog');
   if (!dialog || typeof dialog.showModal !== 'function') return;
   let opener;
