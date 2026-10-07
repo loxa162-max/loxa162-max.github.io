@@ -4,25 +4,34 @@
   if (picker) {
     picker.hidden = false;
     const cards = [...gallery.querySelectorAll('.product-card')];
-    const groups = [...gallery.querySelectorAll('.more-products')];
-    let savedOpen;
+    const more = document.querySelector('#gallery-more');
+    let selected = 'all';
+    let expanded = false;
+    function render() {
+      const matches = cards.filter(card => selected === 'all' || card.dataset.colors.split(' ').includes(selected));
+      const limit = selected === 'all' && !expanded ? 6 : matches.length;
+      cards.forEach(card => { card.hidden = !matches.includes(card) || matches.indexOf(card) >= limit; });
+      more.hidden = selected !== 'all' || matches.length <= 6;
+      more.textContent = expanded ? '收合更多款式' : '顯示更多款式（還有 ' + (matches.length - 6) + ' 款）';
+      more.setAttribute('aria-expanded', String(expanded));
+      const label = picker.querySelector('[data-color-filter="' + selected + '"]').textContent.trim();
+      picker.querySelector('.color-result').textContent = selected === 'all'
+        ? '共 ' + matches.length + ' 款選物，目前顯示 ' + Math.min(limit, matches.length) + ' 款。'
+        : label + ' · ' + matches.length + ' 款選物；現貨與規格以賣場為準。';
+    }
     picker.querySelectorAll('[data-color-filter]').forEach(button => button.addEventListener('click', () => {
-      const color = button.dataset.colorFilter;
-      if (color !== 'all' && !savedOpen) savedOpen = groups.map(group => group.open);
+      selected = button.dataset.colorFilter;
       picker.querySelectorAll('[data-color-filter]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-      cards.forEach(card => { card.hidden = color !== 'all' && !card.dataset.colors.split(' ').includes(color); });
-      groups.forEach((group, i) => {
-        group.hidden = ![...group.querySelectorAll('.product-card')].some(card => !card.hidden);
-        if (color !== 'all') group.open = !group.hidden;
-        else if (savedOpen) group.open = savedOpen[i];
-      });
-      if (color === 'all') savedOpen = undefined;
-      gallery.querySelectorAll('.grid').forEach(grid => { grid.hidden = ![...grid.querySelectorAll('.product-card')].some(card => !card.hidden); });
-      const count = cards.filter(card => !card.hidden).length;
-      picker.querySelector('.color-result').textContent = color === 'all' ? '共 ' + count + ' 款選物，點照片看細節。' : button.textContent.trim() + ' · ' + count + ' 款選物；現貨與規格以賣場為準。';
+      render();
     }));
-    picker.querySelector('.color-result').textContent = '共 ' + cards.length + ' 款選物，點照片看細節。';
+    more.addEventListener('click', () => {
+      expanded = !expanded;
+      render();
+      if (!expanded) picker.scrollIntoView({block:'start', behavior:'smooth'});
+    });
+    render();
   }
+
   const topLink = document.querySelector('.back-to-top');
   if (topLink) {
     const updateTopLink = () => { topLink.hidden = window.scrollY < 300; };
