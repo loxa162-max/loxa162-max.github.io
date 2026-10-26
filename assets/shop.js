@@ -45,6 +45,11 @@
     if (!id) return;
     const target = document.getElementById(id);
     if (!target) return;
+    // Detail pages link back to a specific card, including initially hidden cards.
+    if (target.matches('.product-card') && target.closest('#gallery') && target.hidden) {
+      document.querySelector('#gallery [data-color-filter="all"]')?.click();
+      if (target.hidden) document.querySelector('#gallery-more')?.click();
+    }
     const topic = target.matches('section[data-topic]') ? target.querySelector('.topic-fold') : target.closest('.topic-fold');
     if (topic) topic.open = true;
     for (let node = target; node; node = node.parentElement) {
@@ -79,6 +84,12 @@
       document.querySelector('#product-dialog-specs').textContent = link.dataset.specs || '';
       document.querySelector('#product-dialog-price-note').textContent = link.dataset.priceNote || '';
       document.querySelector('#product-dialog-inquiry').textContent = inquiry ? '先問這款現貨與尺寸' : 'LINE 問阿諾這款';
+      const intro = document.querySelector('#product-dialog-intro');
+      if (intro) {
+        intro.hidden = !link.dataset.intro;
+        if (link.dataset.intro) intro.href = link.dataset.intro;
+        else intro.removeAttribute('href');
+      }
       dialog.showModal();
       document.body.classList.add('dialog-open');
       dialog.querySelector('.dialog-close').focus();
@@ -103,4 +114,3 @@ document.querySelectorAll('[data-browse-color]').forEach(link => link.addEventLi
  gallery.querySelector('.topic-fold').open=true;
  gallery.querySelector('[data-color-filter="'+link.dataset.browseColor+'"]').click();
 }));
-
