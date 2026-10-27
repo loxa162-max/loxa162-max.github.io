@@ -1,0 +1,72 @@
+:root{--ink:#303f42;--sub:#667572;--muted:#667572;--acc:#637d72;--blue:#788c85;--line:#d8ddda;--card:#fff;--top:#fbfaf7;--bot:#fbfaf7}
+html{background:#fbfaf7!important;scroll-padding-top:28px}
+body.ano-shell{background:#fbfaf7;color:#303f42;font-family:"Noto Sans TC",sans-serif;font-size:15px;line-height:1.95;margin:0}
+body.ano-shell a{color:#526f65;text-underline-offset:4px}
+body.ano-shell h1,body.ano-shell h2,body.ano-shell h3{font-family:"LXGW WenKai TC",serif;color:#303f42}
+body.ano-shell h1{font-size:clamp(28px,3.2vw,38px);line-height:1.5;letter-spacing:.05em}
+body.ano-shell .wrap{max-width:1120px;margin:auto;padding-left:32px;padding-right:32px}
+body.ano-shell>main{max-width:1120px;margin:auto;padding:42px 32px 54px}
+body.ano-shell.reading-guide>.wrap{max-width:920px}
+body.ano-shell>.wrap>header:not(.ano-site-header){padding-top:40px}
+body.ano-shell .panel{background:#f0f3ef;border:1px solid #e2e7e2;border-radius:12px;padding:27px;margin:24px 0}
+body.ano-shell .panel:nth-of-type(3n+2){background:#edf2f5}
+body.ano-shell .panel:nth-of-type(3n+3){background:#f4f0e9}
+body.ano-shell .panel>h2:first-child{margin-top:0}
+body.ano-shell .facts{border-color:#b7c7be}
+body.ano-shell .btn{border-color:#788c85;border-radius:6px;color:#526f65;background:transparent}
+body.ano-shell .btn.fill,body.ano-shell .btn.primary{background:#637d72;border-color:#637d72;color:white}
+body.ano-shell .product,body.ano-shell .card,body.ano-shell .start-card{border:1px solid #dfe6e0;border-radius:10px;background:white;box-shadow:none}
+body.ano-shell .product img,body.ano-shell .hero img{background:#f6f6f1;border-radius:10px}
+body.ano-shell .product-buy,body.ano-shell .color-options button{background:#f0f3ef;border-color:#d4ded7;color:#526f65}
+body.ano-shell .color-options button[aria-pressed="true"]{background:#637d72;border-color:#637d72;color:white}
+body.ano-shell .brand-divider{display:none}
+body.ano-shell .zone-frame{box-shadow:none}
+body.ano-shell .beginner-zone{background:#edf2f4;border-left-color:#a2b8bf}
+body.ano-shell .offline-zone{background:#edf2eb}
+body.ano-shell .market-story img{border-radius:10px}
+body.ano-shell .catalog-intro{padding:44px 0 28px;border-bottom:1px solid #d8ddda;margin-bottom:30px}
+body.ano-shell .catalog-intro p{color:#667572;max-width:680px}
+body.ano-shell .topic-summary .topic-cue{background:#f0f3ef;border-color:#d2ddd4;color:#526f65}
+body.ano-shell .ano-reading-block{padding:30px 32px;margin:32px 0;background:#edf2f5;border:1px solid #dfe6e5;border-radius:12px}
+body.ano-shell .ano-reading-block:nth-of-type(3n+2){background:#edf2eb}
+body.ano-shell .ano-reading-block:nth-of-type(3n){background:#f4efe6}
+body.ano-shell .ano-reading-block>h2:first-child{border:0;margin-top:0;padding-top:0}
+body.ano-shell .ano-reading-block .note{background:#ffffffb8;border:1px solid #e0e5df;border-radius:8px}
+body.ano-shell .guide-jump{background:#f0f3ef;border:0;border-radius:8px;padding:16px 20px}
+body.ano-shell .index-grid .mineral-card{background:white;border-color:#dce3dc}
+body.ano-shell .index-grid .mineral-name h2{color:#303f42}
+body.ano-shell .back-to-top{background:#eef2ed;border-color:#c5d2c7;color:#526f65}
+body.ano-shell #product-dialog{background:#fbfaf7;border-color:#d8ddda}
+body.ano-shell #product-dialog-image{background:#f1f3ef}
+body.ano-shell .mobile-actions{background:rgba(251,250,247,.97);border-color:#d8ddda}
+body.ano-shell .mobile-actions a:first-child{background:#637d72;border-color:#637d72;color:white}
+header.ano-site-header{width:100%;max-width:none;margin:0;padding:0;background:#fbfaf7;border-bottom:1px solid #e0e5de}
+.ano-navbar{max-width:1440px;margin:auto;min-height:96px;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.ano-brand{display:inline-flex!important;flex-direction:column;align-items:center;flex-shrink:0;text-decoration:none!important;color:#303f42!important}
+.ano-wordmark{display:inline-flex;align-items:center;gap:.15em;font-family:"LXGW WenKai TC",serif;font-size:26px;letter-spacing:.08em;line-height:1.2;white-space:nowrap}
+.ano-wing{width:46px;height:26px;flex-shrink:0}
+.ano-tagline{font-size:10px;letter-spacing:.22em;line-height:1.8;margin-top:8px}
+nav.ano-links{display:flex;align-items:center;flex-direction:row;gap:30px;justify-content:flex-start;padding:0;margin:0;font-size:12px;letter-spacing:.08em;list-style:none}
+.ano-links a{display:inline-block;padding:8px 0;color:#303f42!important;text-decoration:none;border-bottom:1px solid transparent}
+.ano-links a:hover,.ano-links a[aria-current="page"]{border-bottom-color:#788c85}
+.ano-order{display:inline-flex;align-items:center;gap:8px;font-size:12px;text-decoration:none!important;white-space:nowrap}
+.ano-menu{font:inherit;font-size:12px;color:#303f42;background:transparent;border:0;padding:9px;cursor:pointer}
+.ano-links[hidden],.ano-menu[hidden]{display:none!important}
+.ano-site-header a:focus-visible,.ano-menu:focus-visible,.ano-site-footer a:focus-visible{outline:2px solid #637d72;outline-offset:5px}
+footer.ano-site-footer{width:100%;max-width:none;margin:38px 0 0;padding:42px 24px 30px;text-align:center;background:#f1f3ef;border-top:1px solid #d8ddda;color:#667572;font-size:12px}
+.ano-site-footer .ano-wordmark{font-size:22px}
+.ano-footer-links{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;font-size:11px;margin:24px 0}
+.ano-site-footer small{font-size:10px;letter-spacing:.06em}
+.ano-skip{position:absolute;top:-100px;left:20px;background:white;padding:10px;z-index:40}.ano-skip:focus{top:10px}
+@media(max-width:1100px){.ano-navbar{padding:18px 30px;gap:20px}nav.ano-links{gap:20px}.ano-wordmark{font-size:24px}}
+@media(max-width:760px){
+ .ano-navbar{padding:16px 22px;gap:14px;min-height:80px;flex-wrap:wrap}.ano-wordmark{font-size:23px}.ano-wing{width:40px}.ano-tagline{font-size:9px}
+ .ano-menu{margin-left:auto}.ano-order>span{display:none}
+ nav.ano-links{order:4;width:100%;display:flex;flex-wrap:wrap;flex-direction:row;gap:8px 24px;padding:12px 0 5px;border-top:1px solid #d8ddda;font-size:12px;align-items:center}
+ body.ano-shell .wrap{padding-left:18px;padding-right:18px}body.ano-shell>main{padding:30px 18px 36px}
+ body.ano-shell .panel{padding:22px 20px;margin:22px 0;border-radius:10px}
+ body.ano-shell .ano-reading-block{padding:24px 20px;margin:28px 0}
+ body.ano-shell .catalog-intro{padding-top:30px}
+ .ano-footer-links{gap:14px 20px}footer.ano-site-footer{padding-top:34px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
