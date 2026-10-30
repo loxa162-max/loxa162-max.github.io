@@ -111,6 +111,6 @@
 // Category color entries reuse the gallery filter and its product count.
 document.querySelectorAll('[data-browse-color]').forEach(link => link.addEventListener('click', () => {
  const gallery=document.querySelector('#gallery');
- gallery.querySelector('.topic-fold').open=true;
+ const fold=gallery.querySelector('.topic-fold');if(fold)fold.open=true;
  gallery.querySelector('[data-color-filter="'+link.dataset.browseColor+'"]').click();
 }));
