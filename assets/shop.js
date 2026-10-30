@@ -1,7 +1,7 @@
 (() => {
   const gallery = document.querySelector('#gallery');
   const picker = gallery?.querySelector('.color-picker');
-  if (picker) {
+  if (picker && !document.body.classList.contains('catalog-browser')) {
     picker.hidden = false;
     const cards = [...gallery.querySelectorAll('.product-card')];
     const more = document.querySelector('#gallery-more');
@@ -46,7 +46,9 @@
     const target = document.getElementById(id);
     if (!target) return;
     // Detail pages link back to a specific card, including initially hidden cards.
-    if (target.matches('.product-card') && target.closest('#gallery') && target.hidden) {
+    if (target.matches('.product-card') && target.closest('#gallery') && target.hidden && window.anoCatalog) {
+      window.anoCatalog.reveal(id);
+    } else if (target.matches('.product-card') && target.closest('#gallery') && target.hidden) {
       document.querySelector('#gallery [data-color-filter="all"]')?.click();
       if (target.hidden) document.querySelector('#gallery-more')?.click();
     }
@@ -112,5 +114,5 @@
 document.querySelectorAll('[data-browse-color]').forEach(link => link.addEventListener('click', () => {
  const gallery=document.querySelector('#gallery');
  const fold=gallery.querySelector('.topic-fold');if(fold)fold.open=true;
- gallery.querySelector('[data-color-filter="'+link.dataset.browseColor+'"]').click();
+ document.querySelector('[data-color-filter="'+link.dataset.browseColor+'"]')?.click();
 }));
