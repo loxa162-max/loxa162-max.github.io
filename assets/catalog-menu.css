@@ -7,4 +7,9 @@ nav .shop-nav-panel a{display:block!important;padding:7px 0!important;border:0!i
 nav .shop-nav-panel a:hover{text-decoration:underline;text-underline-offset:5px}
 .shop-nav-toggle:focus-visible{outline:2px solid #637d72;outline-offset:2px}
 .shop-nav-toggle[aria-expanded="true"] span{display:inline-block;transform:rotate(180deg)}
+.ano-navbar nav.ano-links,.nav-wrap nav#navigation{gap:18px;font-size:12px;letter-spacing:.02em}
+@media(min-width:761px) and (max-width:1200px){
+ .ano-navbar,.nav-wrap{flex-wrap:wrap;gap:12px 24px}
+ .ano-navbar nav.ano-links,.nav-wrap nav#navigation{order:4;width:100%;justify-content:center;flex-wrap:wrap;padding-top:12px;border-top:1px solid #e0e5de;gap:10px 24px}
+}
 @media(max-width:760px){.shop-nav-item{flex-wrap:wrap}.shop-nav-item:has(.shop-nav-toggle[aria-expanded="true"]){width:100%}.shop-nav-panel{position:static;width:100%;grid-template-columns:1fr 1fr;gap:16px;padding:18px;margin:5px 0 12px;box-shadow:none}.shop-nav-panel p{font-size:10px}.shop-nav-panel a{font-size:12px!important}.shop-nav-link{padding-right:0!important}}

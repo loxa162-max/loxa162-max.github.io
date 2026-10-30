@@ -4,7 +4,10 @@
  const cards=[...grid.querySelectorAll('.product-card')];
  cards.forEach(card=>{const a=card.querySelector('.product-open');a.setAttribute('aria-label','查看'+a.dataset.name+'照片與規格');const p=document.createElement('p');p.className='catalog-card-price';p.textContent=a.dataset.price||'款式與價格請詢問';card.querySelector('figcaption').append(p);});
  const params=new URLSearchParams(location.search);
- const state={color:params.get('color')||'all',view:params.get('view')==='new'?'new':'all',mineral:'all',query:'',sort:'default',size:12,page:1};
+ const state={color:params.get('color')||'all',view:['new','featured'].includes(params.get('view'))?params.get('view'):'all',mineral:'all',query:'',sort:'default',size:12,page:1};
+ // New arrivals stay here for 15 calendar days, using the brand's Taiwan timezone.
+ const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+ function isRecent(card){const date=card.querySelector('.product-open').dataset.listedAt;if(!/^\d{4}-\d{2}-\d{2}$/.test(date||''))return false;const age=(Date.parse(today+'T00:00:00Z')-Date.parse(date+'T00:00:00Z'))/86400000;return age>=0&&age<15;}
  const colorButtons=[...document.querySelectorAll('[data-color-filter]')];
  if(!colorButtons.some(b=>b.dataset.colorFilter===state.color))state.color='all';
  const pager=document.querySelector('.catalog-pagination'),status=document.querySelector('.color-result'),empty=document.querySelector('.catalog-empty');
@@ -14,7 +17,7 @@
  function render(scroll=false){
   const matches=cards.filter(c=>{
    const a=c.querySelector('.product-open');
-   return (state.view==='all'||a.dataset.product.startsWith('new-'))&&(state.color==='all'||(c.dataset.colors||'').split(' ').includes(state.color))&&(state.mineral==='all'||a.dataset.intro===state.mineral)&&(!state.query||(a.dataset.name+' '+a.dataset.description).toLocaleLowerCase().includes(state.query));
+   return (state.view==='all'||(state.view==='new'?isRecent(c):!isRecent(c)))&&(state.color==='all'||(c.dataset.colors||'').split(' ').includes(state.color))&&(state.mineral==='all'||a.dataset.intro===state.mineral)&&(!state.query||(a.dataset.name+' '+a.dataset.description).toLocaleLowerCase().includes(state.query));
   });
   if(state.sort!=='default')matches.sort((a,b)=>{const pa=price(a),pb=price(b);if(pa===null)return pb===null?0:1;if(pb===null)return -1;return state.sort==='price-asc'?pa-pb:pb-pa;});
   const count=Math.max(1,Math.ceil(matches.length/state.size));state.page=Math.min(state.page,count);
@@ -22,9 +25,10 @@
   cards.forEach(c=>c.hidden=!shown.includes(c));
   // Reorder the existing cards, preserving their product links and dialog listeners.
   [...matches,...cards.filter(c=>!matches.includes(c))].forEach(c=>grid.append(c));
-  document.querySelector('#catalog-title').textContent=state.view==='new'?'新品上市':'全部選物';
-  status.textContent=matches.length?'共 '+matches.length+' 款 · 第 '+state.page+' / '+count+' 頁':'共 0 款';
+  document.querySelector('#catalog-title').textContent=state.view==='new'?'最新商品':state.view==='featured'?'阿諾精選':'全部選物';
+  status.textContent=(state.view==='new'?'近 15 天上架 · ':'')+(matches.length?'共 '+matches.length+' 款 · 第 '+state.page+' / '+count+' 頁':'共 0 款');
   empty.hidden=matches.length>0;
+  empty.textContent=state.view==='new'?'近 15 天暫時沒有符合的新上架款式，可以到「阿諾精選」繼續看看。':'還沒有找到符合的款式，試試其他名稱或色系。';
   colorButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.colorFilter===state.color)));
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===state.view)));
   pager.replaceChildren();
