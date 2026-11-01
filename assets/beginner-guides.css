@@ -1,0 +1,23 @@
+.beginner-guides{padding:40px 0 52px;scroll-margin-top:28px;border-top:1px solid var(--line)}
+.beginner-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:26px}
+.beginner-heading .eyebrow{margin-bottom:10px}
+.beginner-heading>p{font-size:13px;line-height:1.9;color:var(--muted)}
+.beginner-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.beginner-card{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:26px;background:#edf2f5;border:1px solid #dfe6e5;border-radius:10px;transition:border-color .2s,background .2s}
+.beginner-card:nth-child(3n+2){background:#edf2eb}.beginner-card:nth-child(3n){background:#f3eee5}
+.beginner-label{display:block;font-size:11px;letter-spacing:.08em;color:#617870;margin-bottom:14px;line-height:1.7}
+.beginner-card h3,.beginner-library h3{font-family:"LXGW WenKai TC",serif;font-size:21px;line-height:1.6;font-weight:400;margin:0 0 10px}
+.beginner-card p,.beginner-library p:not(.beginner-label){font-size:13px;color:#5a6c66;line-height:1.9;margin:0 0 20px}
+.beginner-read{display:flex;justify-content:space-between;align-items:center;width:100%;margin-top:auto;padding-top:14px;border-top:1px solid #cfdad6;font-size:12px;color:#526f65}
+.beginner-card:hover{border-color:#8b9f96}.beginner-card:focus-visible,.beginner-guides summary:focus-visible,.beginner-guides a:focus-visible{outline:2px solid #637d72;outline-offset:4px}
+.beginner-library{margin-top:20px;padding:28px;background:#f4f5f1;border:1px solid #dfe6e0;border-radius:10px}
+.beginner-library-heading{display:flex;justify-content:space-between;align-items:center;gap:24px}
+.beginner-library .beginner-label{margin-bottom:8px}
+.beginner-library-heading p:not(.beginner-label){margin-bottom:0}
+.beginner-library-link{flex-shrink:0;font-size:13px;border-bottom:1px solid #aab6af;padding-bottom:4px}
+.beginner-minerals{margin-top:22px;border-top:1px solid #d8ddda;padding-top:17px}
+.beginner-minerals summary{cursor:pointer;font-size:13px;color:#526f65;width:fit-content;padding:4px 0}
+.beginner-mineral-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 20px;margin-top:18px}
+.beginner-mineral-links a{font-size:13px;padding:6px 0;overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:4px;color:#526f65}
+@media(max-width:1000px){.beginner-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.beginner-mineral-links{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.beginner-guides{padding:28px 0 36px}.beginner-heading{display:block;margin-bottom:20px}.beginner-heading>p{margin-top:14px}.beginner-heading .eyebrow{font-size:9px}.beginner-grid{grid-template-columns:1fr;gap:12px}.beginner-card{padding:22px}.beginner-card h3,.beginner-library h3{font-size:21px}.beginner-card p{margin-bottom:16px}.beginner-library{padding:23px 22px}.beginner-library-heading{display:block}.beginner-library-link{display:inline-block;margin-top:20px}.beginner-mineral-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}}
