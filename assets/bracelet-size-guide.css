@@ -1,0 +1,29 @@
+*{box-sizing:border-box}
+.size-guide .guide-intro{max-width:790px;padding:12px 0 38px}
+.size-guide .guide-intro>a,.size-guide .section-note,.size-guide figcaption{font-size:13px;color:#667572}
+.size-guide .kicker{font-size:12px;letter-spacing:.15em;color:#607d8a;margin:28px 0 10px}
+.size-guide h1{margin:12px 0 22px}
+.size-guide .lead{font-size:17px;line-height:2;color:#596c70}
+.size-guide .size-jump{display:flex;flex-wrap:wrap;gap:12px 24px;padding:16px 0;margin-top:26px;border-top:1px solid #d8ddda;border-bottom:1px solid #d8ddda;font-size:13px}
+.size-guide section{margin:0 0 56px;scroll-margin-top:28px}
+.size-guide h2{font-size:25px;margin:0 0 12px;line-height:1.6}
+.size-guide .section-note{margin:0 0 24px}
+.size-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 20px}
+.size-gallery figure{margin:0;min-width:0}
+.size-gallery a{display:block;border-radius:10px;overflow:hidden;background:#edf2f5;outline-offset:5px}
+.size-gallery img{display:block;width:100%;height:auto}
+.size-gallery figcaption{margin-top:8px;letter-spacing:.08em}
+.size-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:24px}
+.size-card{background:#eaf1f5;padding:26px 24px;border-radius:12px}
+.size-card:nth-child(2){background:#edf2eb}.size-card:nth-child(3){background:#f3eee5}
+.size-guide .size-card .kicker{font-size:32px;font-family:"LXGW WenKai TC",serif;letter-spacing:0;margin:0}
+.size-card h3{font-size:22px;margin:4px 0 22px}.size-card dl{margin:0}.size-card dl>div{margin-top:18px}
+.size-card dt{font-weight:500;color:#536b70}.size-card dd{margin:4px 0 0;line-height:1.9}
+.size-tips{background:#edf1f2;padding:32px 36px;border-radius:12px}.size-guide .size-tips .kicker{margin-top:0}
+.size-tips ol{padding-left:1.4em;margin-bottom:0}.size-tips li{padding-left:6px;margin:16px 0}.size-tips li:last-child{margin-bottom:0}
+.size-help{text-align:center;padding:20px 0}.size-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:24px 0}
+.size-guide .size-button{display:inline-block;padding:11px 24px;background:#637d72;color:white;border:1px solid #637d72;border-radius:6px;text-decoration:none}
+.size-guide .size-button.secondary{background:transparent;color:#526f65}
+.size-guide a:focus-visible{outline:2px solid #637d72;outline-offset:5px}
+@media(max-width:900px){.size-cards{grid-template-columns:1fr}.size-card{padding:26px 28px}.size-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){body.size-guide>main{padding:28px 20px 40px}.size-guide .guide-intro{padding-top:0;padding-bottom:30px}.size-guide h2{font-size:23px}.size-guide .lead{font-size:15px}.size-guide .size-gallery{grid-template-columns:1fr;gap:28px}.size-guide section{margin-bottom:38px}.size-tips{padding:26px 22px}.size-guide .ano-wordmark{font-size:23px}}
