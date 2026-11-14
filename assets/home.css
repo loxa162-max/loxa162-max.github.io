@@ -12,3 +12,5 @@
 .hero .hero-image img{position:static;display:block;width:100%;max-width:100%;height:auto;object-fit:contain}
 .categories{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media(max-width:760px){.categories{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 0}.categories a,.categories a:nth-child(4),.categories a:nth-child(5){grid-column:auto}.categories a:nth-child(odd){border-right:1px solid var(--line)}.categories a:nth-child(even){border-right:0}}
+/* 2026-11-14 手機首屏：主標與選購按鈕先出現，四格圖完整保留在下方 */
+@media(max-width:760px){.hero .hero-copy{order:-1;padding:28px 24px 30px}.hero .hero-image{width:min(86%,420px);margin:0 auto 28px}}
