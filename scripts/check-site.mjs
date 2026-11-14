@@ -6,7 +6,7 @@ const context = await browser.newContext({ viewport: { width: 1440, height: 900 
 const page = await context.newPage();
 const errors = [];
 page.on('pageerror', error => errors.push(error.message));
-const base = 'http://127.0.0.1:8080/';
+const base = process.env.SITE_BASE || 'http://127.0.0.1:8080/';
 const visibleCards = () => page.locator('.product-card:visible');
 try {
  await page.goto(base + 'collection.html');
@@ -71,6 +71,14 @@ try {
   assert.ok(await raw.locator('.catalog-pagination a[href]').count() >= 4);
  }
  await noJS.close();
+ if(process.env.SITE_BASE){
+  await page.setViewportSize({width:390,height:844});
+  for(const [label,path] of [['home',''],['collection','collection.html']]){
+   await page.goto(base+path);await page.evaluate(()=>document.fonts.ready);await page.locator('img').first().waitFor({state:'visible'});
+   console.log('VISUAL_'+label+':'+(await page.screenshot({type:'jpeg',quality:60})).toString('base64'));
+  }
+ }
+
  assert.deepEqual(errors, []);
  console.log('PASS: pagination, back, filtering, empty/reset, reload, product dialog, 320/390/768/1440 widths, no-JS pagination.');
 } finally { await browser.close(); }
