@@ -1,0 +1,21 @@
+/* 品牌既有版面上的閱讀、鍵盤與觸控補強。 */
+:root{--ano-ink:#2E4861;--ano-soft:#DCE6F1;--ano-focus:#2E4861;--ano-white:#F8F9FB}
+::selection{background:var(--ano-soft);color:var(--ano-ink)}
+:where(a,button,input,select,summary):focus-visible{outline:2px solid var(--ano-focus);outline-offset:4px}
+.ano-skip{position:absolute;left:16px;top:-100px;z-index:1000;background:var(--ano-white);color:var(--ano-ink);padding:12px 16px}
+.ano-skip:focus{top:12px}
+.catalog-pagination :is(a,span){display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:44px;min-height:44px;text-decoration:none}
+.catalog-reset{font:inherit;font-size:14px;color:var(--ano-ink);background:transparent;border:0;text-decoration:underline;text-underline-offset:4px;min-height:44px;cursor:pointer;padding:8px 0}
+.catalog-browser .catalog-controls{flex-wrap:wrap}
+.catalog-browser .product-card h3{overflow-wrap:anywhere}
+.catalog-browser .catalog-card-price{font-variant-numeric:tabular-nums}
+@media(max-width:760px){
+ .catalog-browser .catalog-search>label{display:block;font-size:14px;color:var(--ano-ink)}
+ .catalog-browser .catalog-search{flex-direction:column;align-items:stretch;gap:8px}
+ .catalog-browser input,.catalog-browser select{font-size:16px!important;min-height:44px}
+ .catalog-browser .catalog-search button,.catalog-browser .catalog-color-buttons button,.catalog-filter-content>nav :is(a,button){min-height:44px}
+ .catalog-browser .product-card h3,.catalog-browser .product-card figcaption>p.catalog-card-price{font-size:14px!important}
+ .catalog-browser .catalog-toolbar .color-result,.catalog-browser .catalog-controls{font-size:14px}
+ .hero-copy .hero-note{font-size:14px;color:var(--ano-ink);line-height:1.7}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}

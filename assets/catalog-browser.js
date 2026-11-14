@@ -2,9 +2,12 @@
  if(!document.body.classList.contains('catalog-browser'))return;
  const grid=document.querySelector('#gallery-items');
  const cards=[...grid.querySelectorAll('.product-card')];
- cards.forEach(card=>{const a=card.querySelector('.product-open');a.setAttribute('aria-label','查看'+a.dataset.name+'照片與規格');const p=document.createElement('p');p.className='catalog-card-price';p.textContent=a.dataset.price||'款式與價格請詢問';card.querySelector('figcaption').append(p);});
- const params=new URLSearchParams(location.search);
- const state={color:params.get('color')||'all',view:['new','featured'].includes(params.get('view'))?params.get('view'):'all',mineral:'all',query:'',sort:'default',size:12,page:1};
+ cards.forEach(card=>{const a=card.querySelector('.product-open');a.setAttribute('aria-label','查看'+a.dataset.name+'照片與規格');let p=card.querySelector('.catalog-card-price');if(!p){p=document.createElement('p');p.className='catalog-card-price';card.querySelector('figcaption').append(p);}p.textContent=a.dataset.price||'款式與價格請詢問';});
+ function readState(){
+  const params=new URLSearchParams(location.search);
+  return {color:params.get('color')||'all',view:['new','featured'].includes(params.get('view'))?params.get('view'):'all',mineral:params.get('mineral')||'all',query:(params.get('q')||'').trim().toLocaleLowerCase(),sort:['price-asc','price-desc'].includes(params.get('sort'))?params.get('sort'):'default',size:params.get('size')==='24'?24:12,page:Number(location.pathname.match(/collection-page-(\d+)\.html$/)?.[1])||1};
+ }
+ const state=readState();
  // New arrivals stay here for 15 calendar days, using the brand's Taiwan timezone.
  const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
  function isRecent(card){const date=card.querySelector('.product-open').dataset.listedAt;if(!/^\d{4}-\d{2}-\d{2}$/.test(date||''))return false;const age=(Date.parse(today+'T00:00:00Z')-Date.parse(date+'T00:00:00Z'))/86400000;return age>=0&&age<15;}
@@ -13,7 +16,29 @@
  const pager=document.querySelector('.catalog-pagination'),status=document.querySelector('.color-result'),empty=document.querySelector('.catalog-empty');
  const query=document.querySelector('#catalog-query'),mineral=document.querySelector('#mineral-filter'),sort=document.querySelector('#catalog-sort'),size=document.querySelector('#catalog-page-size');
  function price(card){return Number(card.querySelector('.product-open').dataset.price?.replace(/,/g,'').match(/[\d.]+/)?.[0])||null;}
- function syncURL(){const u=new URL(location.href);if(state.color==='all')u.searchParams.delete('color');else u.searchParams.set('color',state.color);if(state.view==='all')u.searchParams.delete('view');else u.searchParams.set('view',state.view);history.replaceState(null,'',u);}
+ function pageURL(page){
+  const u=new URL(location.href);
+  u.pathname=u.pathname.replace(/collection(?:-page-\d+)?\.html$/,page===1?'collection.html':'collection-page-'+page+'.html');
+  u.search='';
+  if(state.color!=='all')u.searchParams.set('color',state.color);
+  if(state.view!=='all')u.searchParams.set('view',state.view);
+  if(state.mineral!=='all')u.searchParams.set('mineral',state.mineral);
+  if(state.query)u.searchParams.set('q',state.query);
+  if(state.sort!=='default')u.searchParams.set('sort',state.sort);
+  if(state.size!==12)u.searchParams.set('size',String(state.size));
+  u.hash='gallery';return u;
+ }
+ function syncURL(){
+  const u=pageURL(state.page);u.hash=location.hash;history.replaceState(null,'',u);
+  const canonical=document.querySelector('link[rel="canonical"]');
+  if(canonical)canonical.href=new URL(u.search?'collection.html':u.pathname,location.origin).href;
+ }
+ function syncControls(){
+  query.value=state.query;mineral.value=state.mineral;
+  if(!mineral.value){state.mineral='all';mineral.value='all';}
+  sort.value=state.sort;size.value=String(state.size);
+  if(!colorButtons.some(b=>b.dataset.colorFilter===state.color))state.color='all';
+ }
  function render(scroll=false){
   const matches=cards.filter(c=>{
    const a=c.querySelector('.product-open');
@@ -32,8 +57,19 @@
   colorButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.colorFilter===state.color)));
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===state.view)));
   pager.replaceChildren();
-  function pageButton(label,page,disabled=false,current=false){const b=document.createElement('button');b.type='button';b.textContent=label;b.disabled=disabled;if(current)b.setAttribute('aria-current','page');b.addEventListener('click',()=>{state.page=page;render(true);});pager.append(b);}
+  function pageButton(label,page,disabled=false,current=false){
+   const b=document.createElement(disabled?'span':'a');b.textContent=label;
+   if(disabled)b.setAttribute('aria-disabled','true');
+   else {b.href=pageURL(page).href;if(current)b.setAttribute('aria-current','page');
+    b.addEventListener('click',event=>{
+     if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button)return;
+     event.preventDefault();history.pushState(null,'',b.href);state.page=page;render(true);
+    });}
+   pager.append(b);
+  }
   if(count>1){pageButton('上一頁',state.page-1,state.page===1);for(let i=1;i<=count;i++)pageButton(String(i),i,false,i===state.page);pageButton('下一頁',state.page+1,state.page===count);}
+  const reset=document.querySelector('#catalog-reset');
+  if(reset)reset.hidden=state.color==='all'&&state.view==='all'&&state.mineral==='all'&&!state.query&&state.sort==='default';
   syncURL();
   if(scroll)document.querySelector('.catalog-toolbar').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});
  }
@@ -48,5 +84,10 @@
  window.anoCatalog={reveal(id){const card=cards.find(c=>c.id===id);if(!card)return;state.color='all';state.view='all';state.mineral='all';state.query='';state.sort='default';mineral.value='all';query.value='';sort.value='default';state.page=Math.floor(cards.indexOf(card)/state.size)+1;render();}};
  const filters=document.querySelector('.catalog-filters'),mobile=matchMedia('(max-width:760px)');
  function filterMode(){filters.open=!mobile.matches;}filterMode();mobile.addEventListener('change',filterMode);
- render();
+ document.querySelector('#catalog-reset')?.addEventListener('click',()=>{
+  Object.assign(state,{color:'all',view:'all',mineral:'all',query:'',sort:'default',page:1});
+  syncControls();render();query.focus();
+ });
+ window.addEventListener('popstate',()=>{Object.assign(state,readState());syncControls();render();});
+ syncControls();render();
 })();
