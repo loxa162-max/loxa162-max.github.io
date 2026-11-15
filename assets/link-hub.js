@@ -15,7 +15,7 @@
  const note=document.querySelector('#market-note');
  const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
  if(note&&today>'2026-11-22'){
-  note.querySelector('.label').textContent='擺攤時間';
+  note.querySelector('.label').textContent='擺攤時間・高雄';
   note.querySelector('strong').textContent='下一次出攤';
   note.querySelector('small').textContent='最新日期、地點與時間，請看官網公告。';
  }
