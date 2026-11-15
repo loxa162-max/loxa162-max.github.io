@@ -62,6 +62,23 @@ try {
    }
   }
  }
+
+ await page.goto(base + 'links/');
+ await page.waitForFunction(() => !document.querySelector('#copy-link').hidden);
+ assert.equal(await page.locator('h1').innerText(), '阿諾ʚ ɞ水晶');
+ assert.equal(await page.locator('main a[href]').count(), 8);
+ assert.equal(await page.locator('a[href="https://www.dcard.tw/@loxa1022"]').count(), 1);
+ assert.equal(await page.locator('a[href="https://www.facebook.com/zhen0304/"]').count(), 1);
+ assert.equal(await page.locator('a[href="#"]').count(), 0);
+ for (const width of [320,390,768,1440]) {
+  await page.setViewportSize({width,height:900});
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Link hub overflow at '+width);
+  assert.ok(await page.locator('.action').first().evaluate(el => el.getBoundingClientRect().height >= 44));
+  if(width===390 || width===1440){await page.screenshot({path:'site-screenshots/links-'+width+'.png',fullPage:true});console.log('HUB_VISUAL_'+width+':'+(await page.screenshot({type:'jpeg',quality:55,fullPage:true})).toString('base64'));}
+ }
+ await page.locator('#copy-link').click();
+ await page.waitForFunction(() => document.querySelector('#copy-status').textContent.length > 0);
+
  const noJS = await browser.newContext({ javaScriptEnabled: false });
  const raw = await noJS.newPage();
  for (let n = 1; n <= 4; n++) {

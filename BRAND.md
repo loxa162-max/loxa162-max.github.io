@@ -93,3 +93,10 @@
 全部選物以 collection.html、collection-page-2.html 至 collection-page-4.html 提供可直接開啟的分頁，預設每頁12款，保留38款原商品資料。日後更動商品清單須同步四頁，保留資料屬性、排序與價格。篩選、搜尋、排序、每頁數量保存在網址；分頁有自己的 canonical，篩選網址指向全部選物主頁。礦石頁直接連到 collection.html 的商品位置，原首頁轉址保留相容。
 
 共用 usability.css 補強手機輸入框16px、商品字級14px、44px觸控目標、清除篩選及鍵盤焦點。指南與商品內容、照片、價格、庫存、服務及活動期限不因此更動。lastmod 僅隨重要更新調整，不做每日假更新。
+
+
+## 2026-11-15 社群連結總覽
+
+獨立連結頁位於 /links/（links/index.html），使用既有實拍與冷白、霧藍、深灰藍配色。主要入口為賣貨便選購與LINE詢問，其次為官網、市集、Instagram、Threads、Facebook及Dcard。Dcard使用使用者提供的 https://www.dcard.tw/@loxa1022；Facebook沿用 https://www.facebook.com/zhen0304/。正式品牌名稱保留原文字字元「阿諾ʚ ɞ水晶」。不改官網既有價格、庫存及活動。
+
+市集摘要依11/21–11/22已確認資訊；11/22後腳本改為一般市集入口，下次確定行程時需更新原始內容。複製網址按鈕使用固定公開網址 https://loxa162-max.github.io/links/，失敗時提供可長按複製的文字。
