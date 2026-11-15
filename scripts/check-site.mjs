@@ -66,7 +66,10 @@ try {
  await page.goto(base + 'links/');
  await page.waitForFunction(() => !document.querySelector('#copy-link').hidden);
  assert.equal(await page.locator('h1').innerText(), '阿諾ʚ ɞ水晶');
- assert.equal(await page.locator('main a[href]').count(), 8);
+ for(const href of ['https://myship.7-11.com.tw/general/detail/GM2401270490131','https://line.me/R/ti/p/@541nqkeb','https://www.instagram.com/loxa162/','https://www.threads.net/@loxa162','https://www.dcard.tw/@loxa1022','https://www.facebook.com/zhen0304/','../market.html#market','../','../about.html']){
+  assert.equal(await page.locator('main a[href="'+href+'"]').count(),1,'Each destination has one clear entry: '+href);
+ }
+ assert.equal(await page.locator('.brand').innerText(),'阿諾ʚ ɞ水晶');
  assert.equal(await page.locator('a[href="https://www.dcard.tw/@loxa1022"]').count(), 1);
  assert.equal(await page.locator('a[href="https://www.facebook.com/zhen0304/"]').count(), 1);
  assert.equal(await page.locator('a[href="#"]').count(), 0);
@@ -76,8 +79,35 @@ try {
   assert.ok(await page.locator('.action').first().evaluate(el => el.getBoundingClientRect().height >= 44));
   if(width===390 || width===1440){await page.screenshot({path:'site-screenshots/links-'+width+'.png',fullPage:true});console.log('HUB_VISUAL_'+width+':'+(await page.screenshot({type:'jpeg',quality:55,fullPage:true})).toString('base64'));}
  }
+ await context.grantPermissions(['clipboard-read','clipboard-write']);
  await page.locator('#copy-link').click();
  await page.waitForFunction(() => document.querySelector('#copy-status').textContent.length > 0);
+
+ // 首頁商品先於指南，進階文章按需求展開；保留所有原文章入口。
+ await page.goto(base);
+ assert.equal(await page.locator('#featured').evaluate(el=>el.compareDocumentPosition(document.querySelector('#beginner-guide')) & Node.DOCUMENT_POSITION_FOLLOWING),4);
+ assert.equal(await page.locator('#beginner-guide > .beginner-grid .beginner-card:visible').count(),3);
+ assert.equal(await page.locator('.beginner-more .beginner-card:visible').count(),0);
+ await page.locator('.beginner-more > summary').click();
+ assert.equal(await page.locator('.beginner-more .beginner-card:visible').count(),3);
+ for(const width of [320,390,768,820,1440]){
+  await page.setViewportSize({width,height:900});
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Expanded guides overflow at '+width);
+ }
+ for(const [label,path] of [['home',''],['links','links/']]){
+  for(const width of [390,1440]){
+   await page.setViewportSize({width,height:900});await page.goto(base+path);await page.evaluate(()=>document.fonts.ready);
+   console.log('LAYOUT_'+label+'_'+width+':'+(await page.screenshot({type:'jpeg',quality:55,fullPage:label==='links'})).toString('base64'));
+  }
+ }
+ // 市集到期後顯示一般入口，不保留舊日期。
+ await page.clock.install({time:new Date('2026-11-23T00:00:00+08:00')});
+ await page.goto(base+'links/');
+ assert.equal(await page.locator('#market-note strong').innerText(),'下一次出攤');
+ assert.doesNotMatch(await page.locator('#market-note').innerText(),/11\.21|11:00/);
+ await page.clock.setFixedTime(new Date('2026-11-22T23:59:00+08:00'));
+ await page.reload();
+ assert.equal(await page.locator('#market-note strong').innerText(),'11.21 — 11.22');
 
  const noJS = await browser.newContext({ javaScriptEnabled: false });
  const raw = await noJS.newPage();

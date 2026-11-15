@@ -1,7 +1,7 @@
 name: Website usability checks
 on:
   push:
-    branches: [main, codex/seo-usability-20261115]
+    branches: [main, codex/seo-usability-20261115, codex/layout-20261116]
     paths: ['**.html', 'assets/**', 'scripts/check-site.mjs', '.github/workflows/site-check.yml']
   pull_request:
     paths: ['**.html', 'assets/**', 'scripts/check-site.mjs', '.github/workflows/site-check.yml']
