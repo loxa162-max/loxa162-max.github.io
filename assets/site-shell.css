@@ -146,3 +146,6 @@ body.ano-shell .blindbox-records{margin-top:48px}
  body.focused-page .section-shop{padding:22px 20px}
  body.ano-shell .guide-jump{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;padding:18px;font-size:12px}
 }
+
+/* 2026-11-15 Dcard 整合：阿諾的筆記區塊、阿諾進過的礦物 */
+.anuo-notes-block{background:#fbfaf7;border:1px solid #dfe5ea;border-radius:14px;padding:22px 24px;margin:28px 0}.anuo-notes-block h2,.anuo-notes-block h3{margin-top:0}.anuo-notes-block p:last-child{margin-bottom:0}.past-minerals{margin:44px 0 24px}.past-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:18px 0}.past-mineral{background:#fbfaf7;border:1px solid #dfe5ea;border-radius:14px;padding:18px 20px}.past-mineral h3{margin:0 0 6px;font-size:18px}.past-mineral p{margin:0;line-height:1.8}
