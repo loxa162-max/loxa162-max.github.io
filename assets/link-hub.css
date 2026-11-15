@@ -75,3 +75,4 @@ img{display:block}
 .pics.logo{display:grid;place-items:center;background:#fff;border-radius:50%}
 .pics.logo img{width:54px;height:54px;object-fit:contain}
 .flower.center .mini-logo{width:62px;height:62px;border-radius:50%}
+.socials img{width:24px;height:24px;object-fit:contain}
