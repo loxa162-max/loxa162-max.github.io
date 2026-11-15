@@ -100,6 +100,14 @@ try {
    console.log('LAYOUT_'+label+'_'+width+':'+(await page.screenshot({type:'jpeg',quality:55,fullPage:label==='links'})).toString('base64'));
   }
  }
+ await page.goto(base);
+ for(const width of [390,1440]){
+  await page.setViewportSize({width,height:900});await page.evaluate(()=>document.fonts.ready);
+  for(const selector of ['#featured','#beginner-guide']){
+   await page.locator(selector).scrollIntoViewIfNeeded();
+   console.log('SECTION_'+selector.slice(1)+'_'+width+':'+(await page.locator(selector).screenshot({type:'jpeg',quality:55})).toString('base64'));
+  }
+ }
  // 市集到期後顯示一般入口，不保留舊日期。
  await page.clock.install({time:new Date('2026-11-23T00:00:00+08:00')});
  await page.goto(base+'links/');
